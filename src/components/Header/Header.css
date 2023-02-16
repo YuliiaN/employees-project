@@ -1,0 +1,15 @@
+.card {
+  background-color: transparent;
+  border: none;
+}
+
+.card-header {
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  color: var(--bs-white);
+}
+
+.card-header:not(:last-child) {
+  margin-bottom: 5px;
+}

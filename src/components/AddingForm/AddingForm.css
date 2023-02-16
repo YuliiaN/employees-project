@@ -1,0 +1,19 @@
+.title.card-header {
+  margin-bottom: 20px;
+}
+
+.form {
+  display: flex;
+  gap: 10px;
+}
+
+.form-control {
+  max-width: 400px;
+}
+
+.btn {
+  width: 100px;
+  background-color: transparent;
+  border: 1px solid var(--bs-white);
+  color: var(--bs-white);
+}

@@ -1,0 +1,26 @@
+.nav {
+  max-width: 500px;
+  border: 1px solid var(--bs-white);
+  border-radius: 4px;
+  margin-top: 20px;
+}
+
+.nav-item:not(:last-child) {
+  border-right: 1px solid var(--bs-white);
+}
+
+.nav-link {
+  color: var(--bs-white);
+  transition: none;
+}
+
+.nav-link:hover {
+  background-color: var(--bs-white);
+  color: var(--bs-black);
+}
+
+.nav-link,
+.nav-link:hover,
+.nav-link:focus {
+  border-radius: 0;
+}
