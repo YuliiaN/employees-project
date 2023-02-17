@@ -12,42 +12,91 @@ import AddingForm from './AddingForm/AddingForm';
 
 export const App = () => {
   const [data, setData] = useState([
-    { id: nanoid(), name: 'John C.', salary: 800, increase: false },
-    { id: nanoid(), name: 'Katherine P.', salary: 1000, increase: true },
-    { id: nanoid(), name: 'Leo K.', salary: 1200, increase: false },
-    { id: nanoid(), name: 'Rose R.', salary: 900, increase: false },
+    { id: nanoid(), name: 'John C.', salary: 800, increase: false, rise: true },
+    {
+      id: nanoid(),
+      name: 'Katherine P.',
+      salary: 1000,
+      increase: true,
+      rise: false,
+    },
+    {
+      id: nanoid(),
+      name: 'Leo K.',
+      salary: 1200,
+      increase: false,
+      rise: false,
+    },
+    {
+      id: nanoid(),
+      name: 'Rose R.',
+      salary: 900,
+      increase: false,
+      rise: false,
+    },
   ]);
   const [filter, setFilter] = useState('');
+  const [tab, setTab] = useState(0);
 
   const addEmployee = employee => {
-    setData(prevData => [...prevData, { ...employee, id: nanoid() }]);
+    setData(prevData => [...prevData, { id: nanoid(), ...employee }]);
   };
 
   const handleFilter = query => {
     setFilter(query);
   };
 
-  const selectedEmployees = data.filter(employee =>
-    employee.name.toLowerCase().includes(filter.toLowerCase())
-  );
-
   const deleteEmployee = id => {
     setData(prevData => [...prevData.filter(employee => employee.id !== id)]);
   };
 
+  const onToggleIncrease = newEmployee => {
+    // setData(prevData => {
+    //   const idx = data.findIndex(employee => employee.id === id);
+    //   const old = data[idx];
+    //   const newItem = { ...old, increase: !old.increase };
+    //   return [...prevData.slice(0, idx), newItem, ...data.slice(idx + 1)];
+    // });
+
+    setData(prevData =>
+      prevData.map(item => (item.id === newEmployee.id ? newEmployee : item))
+    );
+  };
+
+  const onToggleRise = newEmployee => {
+    setData(prevData =>
+      prevData.map(item => (item.id === newEmployee.id ? newEmployee : item))
+    );
+  };
+
+  const handleTabs = key => {
+    setTab(key);
+  };
+
+  const employees = data.length;
+  const selected = data.filter(employee =>
+    employee.name.toLowerCase().includes(filter.toLowerCase())
+  );
+  const increased = selected.filter(employee => employee.increase);
+  const over1000 = selected.filter(employee => employee.salary > 1000);
+  const filtered = { selected, increased, over1000 };
+
   return (
     <Container>
       <Section bcg="blue">
-        <Header />
+        <Header employees={employees} increased={increased.length} />
       </Section>
       <Section bcg="blue">
         <SearchForm filterEmployee={handleFilter} />
-        <NavTabs />
+        <NavTabs handleTabs={handleTabs} />
       </Section>
       {!!data.length && (
         <EmployeesList
-          selectedEmployees={selectedEmployees}
           deleteEmployee={deleteEmployee}
+          onToggleIncrease={onToggleIncrease}
+          onToggleRise={onToggleRise}
+          tab={tab}
+          filtered={filtered}
         />
       )}
       <Section bcg="blue">

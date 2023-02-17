@@ -1,17 +1,23 @@
-import { useState } from 'react';
+// import { useState } from 'react';
 import { FaCookie, FaTrash, FaStar } from 'react-icons/fa';
 import './EmployeesItem.css';
 
-const EmployeesItem = ({ id, name, salary, increase, deleteEmployee }) => {
-  const [isIncrease, setIsIncrease] = useState(increase);
-  const [liked, setLiked] = useState(false);
-
+const EmployeesItem = ({
+  id,
+  name,
+  salary,
+  increase,
+  rise,
+  deleteEmployee,
+  onToggleIncrease,
+  onToggleRise,
+}) => {
   const handleIncrease = () => {
-    setIsIncrease(prevState => !prevState);
+    onToggleIncrease({ id, name, salary, rise, increase: !increase });
   };
 
-  const handleClick = () => {
-    setLiked(prevState => !prevState);
+  const handleRise = () => {
+    onToggleRise({ id, name, salary, increase, rise: !rise });
   };
 
   const itemClassNames = [
@@ -20,12 +26,12 @@ const EmployeesItem = ({ id, name, salary, increase, deleteEmployee }) => {
     'justify-content-between',
     'align-items-center',
   ];
-  if (isIncrease) itemClassNames.push('increase');
-  if (liked) itemClassNames.push('like');
+  if (increase) itemClassNames.push('increase');
+  if (rise) itemClassNames.push('like');
 
   return (
     <li className={itemClassNames.join(' ')}>
-      <span className="list-group-item-label" onClick={handleClick}>
+      <span className="list-group-item-label" onClick={handleRise}>
         {name}
       </span>
       <input

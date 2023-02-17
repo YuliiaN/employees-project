@@ -30,7 +30,7 @@ const AddingForm = ({ newEmployee }) => {
       return;
     }
 
-    setEmployee({ name, salary });
+    setEmployee({ name, salary, increase: false, rise: false });
   }, [name, salary]);
 
   return (
