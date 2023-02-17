@@ -16,7 +16,7 @@ const NavTabs = ({ handleTabs }) => {
   return (
     <Tabs defaultActiveKey={'1'} fill transition={true} onSelect={handleSelect}>
       {tabsData.map(tab => (
-        <Tab title={tab.title} eventKey={tab.key} />
+        <Tab title={tab.title} eventKey={tab.key} key={tab.key} />
       ))}
     </Tabs>
   );

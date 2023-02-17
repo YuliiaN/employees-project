@@ -16,28 +16,28 @@ export const App = () => {
       JSON.parse(localStorage.getItem('employees')) ?? [
         {
           id: nanoid(),
-          name: 'John C.',
+          name: 'Ілля М.',
           salary: 800,
           increase: false,
-          rise: true,
-        },
-        {
-          id: nanoid(),
-          name: 'Katherine P.',
-          salary: 1000,
-          increase: true,
           rise: false,
         },
         {
           id: nanoid(),
-          name: 'Leo K.',
+          name: 'Юлія Н.',
+          salary: 1300,
+          increase: true,
+          rise: true,
+        },
+        {
+          id: nanoid(),
+          name: 'Лев Б.',
           salary: 1200,
           increase: false,
           rise: false,
         },
         {
           id: nanoid(),
-          name: 'Rose R.',
+          name: 'Марта С.',
           salary: 900,
           increase: false,
           rise: false,
