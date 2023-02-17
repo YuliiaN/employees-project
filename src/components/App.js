@@ -17,10 +17,19 @@ export const App = () => {
     { id: nanoid(), name: 'Leo K.', salary: 1200, increase: false },
     { id: nanoid(), name: 'Rose R.', salary: 900, increase: false },
   ]);
+  const [filter, setFilter] = useState('');
 
   const addEmployee = employee => {
     setData(prevData => [...prevData, { ...employee, id: nanoid() }]);
   };
+
+  const handleFilter = query => {
+    setFilter(query);
+  };
+
+  const selectedEmployees = data.filter(employee =>
+    employee.name.toLowerCase().includes(filter.toLowerCase())
+  );
 
   return (
     <Container>
@@ -28,10 +37,10 @@ export const App = () => {
         <Header />
       </Section>
       <Section bcg="blue">
-        <SearchForm />
+        <SearchForm filterEmployee={handleFilter} />
         <NavTabs />
       </Section>
-      <EmployeesList data={data} />
+      <EmployeesList data={data} selectedEmployees={selectedEmployees} />
       <Section bcg="blue">
         <AddingForm newEmployee={addEmployee} />
       </Section>
