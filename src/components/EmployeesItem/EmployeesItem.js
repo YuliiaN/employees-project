@@ -1,4 +1,3 @@
-// import { useState } from 'react';
 import { FaCookie, FaTrash, FaStar } from 'react-icons/fa';
 import './EmployeesItem.css';
 
