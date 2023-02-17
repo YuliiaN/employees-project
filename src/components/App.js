@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { nanoid } from 'nanoid';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -11,32 +11,46 @@ import EmployeesList from './EmployeesList/EmployeesList';
 import AddingForm from './AddingForm/AddingForm';
 
 export const App = () => {
-  const [data, setData] = useState([
-    { id: nanoid(), name: 'John C.', salary: 800, increase: false, rise: true },
-    {
-      id: nanoid(),
-      name: 'Katherine P.',
-      salary: 1000,
-      increase: true,
-      rise: false,
-    },
-    {
-      id: nanoid(),
-      name: 'Leo K.',
-      salary: 1200,
-      increase: false,
-      rise: false,
-    },
-    {
-      id: nanoid(),
-      name: 'Rose R.',
-      salary: 900,
-      increase: false,
-      rise: false,
-    },
-  ]);
+  const [data, setData] = useState(() => {
+    return (
+      JSON.parse(localStorage.getItem('employees')) ?? [
+        {
+          id: nanoid(),
+          name: 'John C.',
+          salary: 800,
+          increase: false,
+          rise: true,
+        },
+        {
+          id: nanoid(),
+          name: 'Katherine P.',
+          salary: 1000,
+          increase: true,
+          rise: false,
+        },
+        {
+          id: nanoid(),
+          name: 'Leo K.',
+          salary: 1200,
+          increase: false,
+          rise: false,
+        },
+        {
+          id: nanoid(),
+          name: 'Rose R.',
+          salary: 900,
+          increase: false,
+          rise: false,
+        },
+      ]
+    );
+  });
   const [filter, setFilter] = useState('');
   const [tab, setTab] = useState(0);
+
+  useEffect(() => {
+    localStorage.setItem('employees', JSON.stringify(data));
+  }, [data]);
 
   const addEmployee = employee => {
     setData(prevData => [...prevData, { id: nanoid(), ...employee }]);
