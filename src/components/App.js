@@ -44,10 +44,12 @@ export const App = () => {
         <SearchForm filterEmployee={handleFilter} />
         <NavTabs />
       </Section>
-      <EmployeesList
-        selectedEmployees={selectedEmployees}
-        deleteEmployee={deleteEmployee}
-      />
+      {!!data.length && (
+        <EmployeesList
+          selectedEmployees={selectedEmployees}
+          deleteEmployee={deleteEmployee}
+        />
+      )}
       <Section bcg="blue">
         <AddingForm newEmployee={addEmployee} />
       </Section>
