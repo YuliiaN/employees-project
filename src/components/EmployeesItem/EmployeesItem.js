@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { FaCookie, FaTrash, FaStar } from 'react-icons/fa';
 import './EmployeesItem.css';
 
-const EmployeesItem = ({ name, salary, increase }) => {
+const EmployeesItem = ({ id, name, salary, increase, deleteEmployee }) => {
   const [isIncrease, setIsIncrease] = useState(increase);
   const [liked, setLiked] = useState(false);
 
@@ -44,6 +44,7 @@ const EmployeesItem = ({ name, salary, increase }) => {
         <button
           type="button"
           className="btn-trash btn-sm d-flex justify-content-center align-items-center"
+          onClick={deleteEmployee}
         >
           <FaTrash className="fas fa-trash" />
         </button>
