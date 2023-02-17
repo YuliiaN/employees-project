@@ -10,8 +10,8 @@
 }
 
 .nav-link {
+  height: 100%;
   color: var(--bs-white);
-  transition: none;
 }
 
 .nav-link:hover,
@@ -19,4 +19,13 @@
   border-radius: 0;
   background-color: var(--bs-white);
   color: var(--bs-black);
+}
+
+.nav-tabs .nav-link {
+  border-radius: 0;
+}
+
+.nav-tabs .nav-link.active {
+  border: none;
+  border-color: transparent;
 }
