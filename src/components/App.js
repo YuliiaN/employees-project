@@ -31,6 +31,10 @@ export const App = () => {
     employee.name.toLowerCase().includes(filter.toLowerCase())
   );
 
+  const deleteEmployee = id => {
+    setData(prevData => [...prevData.filter(employee => employee.id !== id)]);
+  };
+
   return (
     <Container>
       <Section bcg="blue">
@@ -40,7 +44,10 @@ export const App = () => {
         <SearchForm filterEmployee={handleFilter} />
         <NavTabs />
       </Section>
-      <EmployeesList data={data} selectedEmployees={selectedEmployees} />
+      <EmployeesList
+        selectedEmployees={selectedEmployees}
+        deleteEmployee={deleteEmployee}
+      />
       <Section bcg="blue">
         <AddingForm newEmployee={addEmployee} />
       </Section>
