@@ -1,10 +1,10 @@
 import './EmployeesList.css';
 import EmployeesItem from 'components/EmployeesItem/EmployeesItem';
 
-const EmployeesList = ({ data }) => {
+const EmployeesList = ({ data, selectedEmployees }) => {
   return (
     <ul className="list-group">
-      {data.map(employee => {
+      {selectedEmployees.map(employee => {
         const { id, ...itemProps } = employee;
         return <EmployeesItem key={id} {...itemProps} />;
       })}
